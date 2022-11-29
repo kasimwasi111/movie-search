@@ -3,7 +3,15 @@ import { useGlobalContext } from "./context";
 import { NavLink } from "react-router-dom";
 
 const MoviesList = () => {
-  const { movie } = useGlobalContext();
+  const { movie, isLoading } = useGlobalContext();
+
+  if (isLoading) {
+    return (
+      <div className="movie-section">
+        <div className="loading">Loading....</div>
+      </div>
+    );
+  }
   return (
     <>
       <section className="movie-page">

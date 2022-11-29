@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
-export const API_Url = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}`;
+export const API_URl = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}`;
 const AppContext = React.createContext();
 
 //we need to create a provider function
@@ -9,7 +9,7 @@ const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [movie, setMovie] = useState([]);
   const [isError, setIsError] = useState({ show: "false", msg: "" });
-  const [query, setQuery] = useState("Avengers");
+  const [query, setQuery] = useState("titanic");
 
   const getMovies = async (url) => {
     setIsLoading(true);
@@ -36,8 +36,9 @@ const AppProvider = ({ children }) => {
   };
   useEffect(() => {
     let timeOut = setTimeout(() => {
-      getMovies(`${API_Url}&s=${query}`);
+      getMovies(`${API_URl}&s=${query}`);
     }, 400);
+
     return () => clearTimeout(timeOut);
   }, [query]);
   return (
